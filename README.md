@@ -3,11 +3,9 @@ A React component that scrolls horizontally if the list is overflow.
 
 [![NPM](https://nodei.co/npm/react-overflow-wrapper.png?downloads=true)](https://nodei.co/npm/react-overflow-wrapper/)
 
-<p align="">
-  <a href="https://www.npmjs.com/package/react-overflow-wrapper"><img src="https://img.shields.io/npm/v/react-overflow-wrapper.svg" /></a>
-  <a href="https://www.npmjs.com/package/react-overflow-wrapper"><img src="https://img.shields.io/bundlephobia/min/react-overflow-wrapper.svg" /></a>
-   <a href="https://www.npmjs.com/package/react-overflow-wrapper"><img src="https://img.shields.io/github/license/lannex/react-overflow-wrapper.svg" /></a>
-</p>
+[![Version](https://img.shields.io/npm/v/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
+[![Size](https://img.shields.io/bundlephobia/min/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
+[![License](https://img.shields.io/github/license/lannex/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
 
 ## Install
 ```
