@@ -3,6 +3,14 @@ A React component that scrolls horizontally if the list is overflow.
 
 [![NPM](https://nodei.co/npm/react-overflow-wrapper.png?downloads=true)](https://nodei.co/npm/react-overflow-wrapper/)
 
+## Install
+```
+$ npm install react-overflow-wrapper
+```
+```
+$ yarn add react-overflow-wrapper
+```
+
 ## Usage
 ```js
 import OverflowWrapper from 'react-overflow-wrapper';
