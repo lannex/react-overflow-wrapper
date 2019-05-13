@@ -4,8 +4,8 @@
   "description": "A React component that scrolls horizontally if the list is overflow",
   "main": "dist/index.js",
   "scripts": {
-    "build": "parcel build ./lib/index.tsx",
-    "lib": "parcel build ./lib/index.tsx --no-minify --out-dir ./lib/"
+    "build": "parcel build ./lib/index.tsx --no-source-maps",
+    "lib": "parcel build ./lib/index.tsx --no-minify --out-dir ./lib/ --no-source-maps"
   },
   "repository": {
     "type": "git",
