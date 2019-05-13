@@ -1,0 +1,40 @@
+{
+  "name": "react-overflow-wrapper",
+  "version": "0.0.1",
+  "description": "A React component that scrolls horizontally if the list is overflow",
+  "main": "dist/react-overflow-wrapper.js",
+  "scripts": {
+    "start": "parcel build ./lib/index.tsx --public-url ./dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lannex/react-overflow-wrapper.git"
+  },
+  "keywords": [
+    "react",
+    "overflow",
+    "scrolling"
+  ],
+  "author": "lannex.shin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lannex/react-overflow-wrapper/issues"
+  },
+  "homepage": "https://github.com/lannex/react-overflow-wrapper#readme",
+  "devDependencies": {
+    "@types/lodash": "^4.14.126",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "parcel-bundler": "1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
