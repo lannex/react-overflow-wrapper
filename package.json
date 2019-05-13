@@ -17,7 +17,7 @@
     "scrolling"
   ],
   "author": "lannex.shin@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lannex/react-overflow-wrapper/issues"
   },
