@@ -2,9 +2,10 @@
   "name": "react-overflow-wrapper",
   "version": "0.0.1",
   "description": "A React component that scrolls horizontally if the list is overflow",
-  "main": "dist/react-overflow-wrapper.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "parcel build ./lib/index.tsx --public-url ./dist/"
+    "build": "parcel build ./lib/index.tsx",
+    "lib": "parcel build ./lib/index.tsx --no-minify --out-dir ./lib/"
   },
   "repository": {
     "type": "git",

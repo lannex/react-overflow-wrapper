@@ -1,1 +1,1 @@
-export default './dist';
+export { default } from 'lib/index.js';
