@@ -171,7 +171,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleClickLeft = e => {
+  handleClickLeft = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
     this.setState(prevState => {
@@ -185,7 +185,7 @@ class OverflowList extends React.Component<
     });
   };
 
-  handleClickRight = e => {
+  handleClickRight = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
     const { rootWidth, wrapWidth } = this.state;
@@ -225,6 +225,9 @@ class OverflowList extends React.Component<
         <div
           ref={this.wrapRef}
           style={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '100%',
             // transition: 'all 0.1s',
             transform: `translateX(${x}px)`,
             whiteSpace: 'nowrap',
