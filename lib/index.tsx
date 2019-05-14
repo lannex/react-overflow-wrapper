@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import throttle from 'lodash/throttle';
 
 interface OverflowListProps {
@@ -22,9 +22,33 @@ interface OverflowListState {
   rootWidth: number;
   wrapWidth: number;
   x: number;
-  canUseMouseMove: boolean;
+  isDragging: boolean;
   mouseX: number;
 }
+
+const rootStyle: CSSProperties = {
+  position: 'relative',
+  overflowX: 'hidden',
+};
+
+const wrapStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+  zIndex: 0,
+  height: '100%',
+  whiteSpace: 'nowrap',
+};
+
+const arrowWrapStyle: CSSProperties = {
+  position: 'absolute',
+  zIndex: 1,
+  top: 0,
+  minWidth: 50,
+  height: '100%',
+  cursor: 'pointer',
+  outline: 0,
+};
 
 class OverflowList extends React.Component<
   OverflowListProps,
@@ -60,7 +84,7 @@ class OverflowList extends React.Component<
     rootWidth: 0,
     wrapWidth: 0,
     x: 0,
-    canUseMouseMove: false,
+    isDragging: false,
     mouseX: 0,
   };
 
@@ -124,7 +148,7 @@ class OverflowList extends React.Component<
         mouseX = touchEvent.pageX + -x;
       }
       this.setState({
-        canUseMouseMove: true,
+        isDragging: true,
         mouseX,
       });
     }
@@ -133,13 +157,13 @@ class OverflowList extends React.Component<
   handleMouseMove = e => {
     const {
       isOverflow,
-      canUseMouseMove,
+      isDragging,
       rootWidth,
       wrapWidth,
       x,
       mouseX,
     } = this.state;
-    if (isOverflow && canUseMouseMove) {
+    if (isOverflow && isDragging) {
       let distance = 0;
       if (e.type === 'mousemove') {
         e.preventDefault();
@@ -163,10 +187,10 @@ class OverflowList extends React.Component<
   };
 
   handleMouseUp = () => {
-    const { isOverflow, canUseMouseMove } = this.state;
-    if (isOverflow && canUseMouseMove) {
+    const { isOverflow, isDragging } = this.state;
+    if (isOverflow && isDragging) {
       this.setState({
-        canUseMouseMove: false,
+        isDragging: false,
       });
     }
   };
@@ -210,27 +234,24 @@ class OverflowList extends React.Component<
       iconStyle,
       iconColor,
     } = this.props;
-    const { x, isOverflow, rootWidth, wrapWidth } = this.state;
+    const { x, isOverflow, isDragging, rootWidth, wrapWidth } = this.state;
 
     return (
       <div
         className={className}
         ref={this.rootRef}
         style={{
-          position: 'relative',
-          overflowX: 'hidden',
+          ...rootStyle,
           ...style,
         }}
       >
         <div
           ref={this.wrapRef}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            height: '100%',
-            // transition: 'all 0.1s',
-            transform: `translateX(${x}px)`,
-            whiteSpace: 'nowrap',
+            ...wrapStyle,
+            transition:
+              isOverflow && isDragging ? 'none' : 'transform 0.3s ease-in-out',
+            transform: `translate3d(${x}px, 0, 0)`,
           }}
           role="presentation"
           onWheel={this.handleWheel}
@@ -247,15 +268,9 @@ class OverflowList extends React.Component<
         {isOverflow && x < 0 && (
           <div
             style={{
-              position: 'absolute',
-              zIndex: 1,
-              top: 0,
+              ...arrowWrapStyle,
               left: 0,
-              minWidth: 50,
-              height: '100%',
               textAlign: 'left',
-              cursor: 'pointer',
-              outline: 0,
               ...iconWrapStyle.left,
             }}
             role="button"
@@ -282,15 +297,9 @@ class OverflowList extends React.Component<
         {isOverflow && -x < wrapWidth - rootWidth && (
           <div
             style={{
-              position: 'absolute',
-              zIndex: 1,
-              top: 0,
+              ...arrowWrapStyle,
               right: 0,
-              minWidth: 50,
-              height: '100%',
               textAlign: 'right',
-              cursor: 'pointer',
-              outline: 0,
               ...iconWrapStyle.right,
             }}
             role="button"
