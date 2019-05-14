@@ -1,6 +1,6 @@
 {
   "name": "react-overflow-wrapper",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A React component that scrolls horizontally if the list is overflow",
   "main": "dist/index.js",
   "scripts": {
