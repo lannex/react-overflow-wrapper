@@ -1,20 +1,18 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "preserve",
+    "target": "es5",
+    "module": "commonjs",
+    "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
+    "removeComments": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "lib": ["dom", "es2016"]
-  }
+    "lib": ["es2018", "dom"]
+  },
+  "include": ["lib/**/*"]
 }
