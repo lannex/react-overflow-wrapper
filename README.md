@@ -7,6 +7,8 @@ A React component that scrolls horizontally if the list is overflow.
 [![Size](https://img.shields.io/bundlephobia/min/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
 [![License](https://img.shields.io/github/license/lannex/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
 
+![Gif](./examples/static/example.gif)
+
 ## Install
 ```
 $ npm install react-overflow-wrapper
