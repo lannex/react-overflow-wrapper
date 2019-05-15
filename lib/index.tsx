@@ -103,8 +103,8 @@ class OverflowList extends React.Component<
 
   handleResize = () => {
     const { isOverflow } = this.state;
-    const rootWidth = this.rootRef.current.clientWidth;
-    const wrapWidth = this.wrapRef.current.scrollWidth;
+    const rootWidth = this.rootRef.current ? this.rootRef.current.clientWidth : 0;
+    const wrapWidth = this.wrapRef.current ? this.wrapRef.current.scrollWidth : 0;
     if (rootWidth < wrapWidth) {
       this.setState({
         isOverflow: true,
