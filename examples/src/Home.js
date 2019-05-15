@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import OverflowWrapper from '../../dist';
 
-class Home extends Component {
+class Home extends PureComponent {
   render() {
     const styles = {
       box: {
