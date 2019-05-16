@@ -6,6 +6,7 @@ A React component that scrolls horizontally if the list is overflow.
 [![Version](https://img.shields.io/npm/v/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
 [![Build](https://travis-ci.org/lannex/react-overflow-wrapper.svg?branch=master)](https://www.npmjs.com/package/react-overflow-wrapper)
 [![Size](https://img.shields.io/bundlephobia/min/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![License](https://img.shields.io/github/license/lannex/react-overflow-wrapper.svg)](https://www.npmjs.com/package/react-overflow-wrapper)
 
 ![Gif](./examples/static/example.gif)
