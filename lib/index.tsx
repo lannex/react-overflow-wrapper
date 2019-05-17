@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import throttle from 'lodash/throttle';
 
-interface OverflowListProps {
+export interface OverflowListProps {
   children: React.ReactNode;
   className?: string;
   style?: {};
