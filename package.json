@@ -4,7 +4,7 @@
   "description": "A React component that scrolls horizontally if the list is overflow",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npm run build && npm run lib",
+    "start": "npm run build",
     "build": "NODE_ENV=production rollup -c --environment INCLUDE_DEPS,BUILD:production",
     "dev": "rollup -c",
     "test": "jest"

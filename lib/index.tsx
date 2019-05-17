@@ -5,6 +5,9 @@ interface OverflowListProps {
   children: React.ReactNode;
   className?: string;
   style?: {};
+  hideIcons?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
   iconSize?: number;
   iconColor?: string;
   iconWrapStyle?: {
@@ -57,6 +60,9 @@ class OverflowList extends React.Component<
   static defaultProps = {
     className: undefined,
     style: undefined,
+    hideIcons: false,
+    leftIcon: undefined,
+    rightIcon: undefined,
     iconSize: 26,
     iconColor: '#aeb6bb',
     iconWrapStyle: {
@@ -103,8 +109,12 @@ class OverflowList extends React.Component<
 
   handleResize = () => {
     const { isOverflow } = this.state;
-    const rootWidth = this.rootRef.current ? this.rootRef.current.clientWidth : 0;
-    const wrapWidth = this.wrapRef.current ? this.wrapRef.current.scrollWidth : 0;
+    const rootWidth = this.rootRef.current
+      ? this.rootRef.current.clientWidth
+      : 0;
+    const wrapWidth = this.wrapRef.current
+      ? this.wrapRef.current.scrollWidth
+      : 0;
     if (rootWidth < wrapWidth) {
       this.setState({
         isOverflow: true,
@@ -229,6 +239,9 @@ class OverflowList extends React.Component<
       children,
       className,
       style,
+      hideIcons,
+      leftIcon,
+      rightIcon,
       iconSize,
       iconWrapStyle,
       iconStyle,
@@ -265,7 +278,7 @@ class OverflowList extends React.Component<
         >
           {children}
         </div>
-        {isOverflow && x < 0 && (
+        {!hideIcons && isOverflow && x < 0 && (
           <div
             style={{
               ...arrowWrapStyle,
@@ -277,24 +290,26 @@ class OverflowList extends React.Component<
             tabIndex={0}
             onClick={this.handleClickLeft}
           >
-            <svg
-              style={{
-                position: 'relative',
-                ...iconStyle.left,
-              }}
-              width={iconSize}
-              height={iconSize}
-              viewBox="0 0 48 48"
-            >
-              <path
-                d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"
-                fill={iconColor}
-              />
-              <path d="M0-.25h48v48H0z" fill="none" />
-            </svg>
+            {leftIcon || (
+              <svg
+                style={{
+                  position: 'relative',
+                  ...iconStyle.left,
+                }}
+                width={iconSize}
+                height={iconSize}
+                viewBox="0 0 48 48"
+              >
+                <path
+                  d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"
+                  fill={iconColor}
+                />
+                <path d="M0-.25h48v48H0z" fill="none" />
+              </svg>
+            )}
           </div>
         )}
-        {isOverflow && -x < wrapWidth - rootWidth && (
+        {!hideIcons && isOverflow && -x < wrapWidth - rootWidth && (
           <div
             style={{
               ...arrowWrapStyle,
@@ -306,21 +321,23 @@ class OverflowList extends React.Component<
             tabIndex={0}
             onClick={this.handleClickRight}
           >
-            <svg
-              style={{
-                position: 'relative',
-                ...iconStyle.right,
-              }}
-              width={iconSize}
-              height={iconSize}
-              viewBox="0 0 48 48"
-            >
-              <path
-                d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"
-                fill={iconColor}
-              />
-              <path d="M0-.25h48v48H0z" fill="none" />
-            </svg>
+            {rightIcon || (
+              <svg
+                style={{
+                  position: 'relative',
+                  ...iconStyle.right,
+                }}
+                width={iconSize}
+                height={iconSize}
+                viewBox="0 0 48 48"
+              >
+                <path
+                  d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"
+                  fill={iconColor}
+                />
+                <path d="M0-.25h48v48H0z" fill="none" />
+              </svg>
+            )}
           </div>
         )}
       </div>
