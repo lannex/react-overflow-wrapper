@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build",
     "build": "NODE_ENV=production rollup -c --environment INCLUDE_DEPS,BUILD:production",
-    "dev": "rollup -c",
+    "dev": "rollup -cw",
     "test": "jest"
   },
   "repository": {
