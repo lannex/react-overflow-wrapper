@@ -16,7 +16,9 @@
   "keywords": [
     "react",
     "overflow",
-    "scrolling"
+    "scrolling",
+    "list",
+    "horizontal"
   ],
   "author": "lannex.shin@gmail.com",
   "license": "MIT",
