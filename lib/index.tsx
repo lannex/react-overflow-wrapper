@@ -251,7 +251,7 @@ class OverflowList extends React.Component<
 
     return (
       <div
-        className={className}
+        className={`react-overflow-wrapper ${className || ''}`}
         ref={this.rootRef}
         style={{
           ...rootStyle,
@@ -280,6 +280,7 @@ class OverflowList extends React.Component<
         </div>
         {!hideIcons && isOverflow && x < 0 && (
           <div
+            className="react-overflow-wrapper__icon-left"
             style={{
               ...arrowWrapStyle,
               left: 0,
@@ -311,6 +312,7 @@ class OverflowList extends React.Component<
         )}
         {!hideIcons && isOverflow && -x < wrapWidth - rootWidth && (
           <div
+            className="react-overflow-wrapper__icon-right"
             style={{
               ...arrowWrapStyle,
               right: 0,
