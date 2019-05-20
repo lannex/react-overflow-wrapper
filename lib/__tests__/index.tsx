@@ -21,7 +21,7 @@ const items = [
 describe('react-overflow-wrapper', () => {
   let component = null;
 
-  it('renders correctly', () => {
+  beforeEach(() => {
     component = shallow(
       <OverflowWrapper style={{ width: 300, height: 40 }}>
         {items.map(el => (
@@ -37,8 +37,24 @@ describe('react-overflow-wrapper', () => {
     });
   });
 
+  it('renders correctly', () => {
+    expect(component.length).toBe(1);
+  });
+
   it('matches snapshot', () => {
     expect(component).toMatchSnapshot();
+  });
+
+  describe('mouse events', () => {
+    it('should call handleWheel()', () => {
+      component.setState({
+        x: -110,
+      });
+      component
+        .find('.react-overflow-wrapper__content')
+        .simulate('wheel', { deltaX: -100 });
+      expect(component.state().x).toBe(-106);
+    });
   });
 
   describe('right icon', () => {
@@ -66,6 +82,9 @@ describe('react-overflow-wrapper', () => {
       ).toBe(true);
     });
     it('simulates left icon click', () => {
+      component.setState({
+        x: -200,
+      });
       component.find('.react-overflow-wrapper__icon-left').simulate('click', {
         preventDefault: () => {},
         stopPropagation: () => {},
