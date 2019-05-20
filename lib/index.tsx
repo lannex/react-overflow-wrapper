@@ -31,7 +31,7 @@ interface OverflowListState {
 
 const rootStyle: CSSProperties = {
   position: 'relative',
-  overflowX: 'hidden',
+  overflow: 'hidden',
 };
 
 const wrapStyle: CSSProperties = {
@@ -128,7 +128,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleWheel = e => {
+  handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     const { isOverflow, rootWidth, wrapWidth, x } = this.state;
     if (isOverflow) {
       let newX = x;
@@ -259,6 +259,7 @@ class OverflowList extends React.Component<
         }}
       >
         <div
+          className="react-overflow-wrapper__content"
           ref={this.wrapRef}
           style={{
             ...wrapStyle,
