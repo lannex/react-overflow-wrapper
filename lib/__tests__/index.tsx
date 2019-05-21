@@ -54,6 +54,14 @@ describe('react-overflow-wrapper', () => {
       expect(component.state().isDragging).toBe(true);
     });
 
+    it('should call handleMouseUp()', () => {
+      component.setState({
+        isDragging: true,
+      });
+      component.find('.react-overflow-wrapper__content').simulate('mouseup');
+      expect(component.state().isDragging).toBe(false);
+    });
+
     it('should call handleWheel()', () => {
       component.setState({
         x: -110,
@@ -74,6 +82,14 @@ describe('react-overflow-wrapper', () => {
           changedTouches: [{ pageX: 100 }],
         });
       expect(component.state().isDragging).toBe(true);
+    });
+
+    it('should call handleMouseUp() a touch', () => {
+      component.setState({
+        isDragging: true,
+      });
+      component.find('.react-overflow-wrapper__content').simulate('touchend');
+      expect(component.state().isDragging).toBe(false);
     });
   });
 
