@@ -147,14 +147,16 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleMouseDown = e => {
+  handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     const { isOverflow, x } = this.state;
     if (isOverflow) {
       let mouseX = 0;
       if (e.type === 'mousedown') {
-        mouseX = e.pageX + -x;
+        const { pageX } = e as React.MouseEvent;
+        mouseX = pageX + -x;
       } else if (e.type === 'touchstart') {
-        const touchEvent = e.changedTouches[0];
+        const { changedTouches } = e as React.TouchEvent;
+        const touchEvent = changedTouches[0];
         mouseX = touchEvent.pageX + -x;
       }
       this.setState({
