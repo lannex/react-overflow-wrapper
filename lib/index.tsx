@@ -210,30 +210,54 @@ class OverflowList extends React.Component<
   handleClickLeft = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
-    this.setState(prevState => {
-      let newX = prevState.x + 100;
-      if (newX > 0) {
-        newX = 0;
-      }
-      return {
-        x: newX,
-      };
-    });
+    this.setState(
+      prevState => {
+        if (this.wrapRef.current) {
+          this.wrapRef.current.style.transition = 'transform 0.3s ease-in-out';
+        }
+        let newX = prevState.x + 100;
+        if (newX > 0) {
+          newX = 0;
+        }
+        return {
+          x: newX,
+        };
+      },
+      () => {
+        setTimeout(() => {
+          if (this.wrapRef.current) {
+            this.wrapRef.current.style.transition = 'none';
+          }
+        }, 300);
+      },
+    );
   };
 
   handleClickRight = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
     const { rootWidth, wrapWidth } = this.state;
-    this.setState(prevState => {
-      let newX = prevState.x - 100;
-      if (-newX > wrapWidth - rootWidth) {
-        newX = -(wrapWidth - rootWidth);
-      }
-      return {
-        x: newX,
-      };
-    });
+    this.setState(
+      prevState => {
+        if (this.wrapRef.current) {
+          this.wrapRef.current.style.transition = 'transform 0.3s ease-in-out';
+        }
+        let newX = prevState.x - 100;
+        if (-newX > wrapWidth - rootWidth) {
+          newX = -(wrapWidth - rootWidth);
+        }
+        return {
+          x: newX,
+        };
+      },
+      () => {
+        setTimeout(() => {
+          if (this.wrapRef.current) {
+            this.wrapRef.current.style.transition = 'none';
+          }
+        }, 300);
+      },
+    );
   };
 
   render() {
@@ -249,7 +273,7 @@ class OverflowList extends React.Component<
       iconStyle,
       iconColor,
     } = this.props;
-    const { x, isOverflow, isDragging, rootWidth, wrapWidth } = this.state;
+    const { x, isOverflow, rootWidth, wrapWidth } = this.state;
 
     return (
       <div
@@ -265,8 +289,8 @@ class OverflowList extends React.Component<
           ref={this.wrapRef}
           style={{
             ...wrapStyle,
-            transition:
-              isOverflow && isDragging ? 'none' : 'transform 0.3s ease-in-out',
+            // transition:
+            //   isOverflow && isDragging ? 'none' : 'transform 0.3s ease-in-out',
             transform: `translate3d(${x}px, 0, 0)`,
           }}
           role="presentation"
