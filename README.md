@@ -33,23 +33,23 @@ import OverflowWrapper from 'react-overflow-wrapper';
 ```
 
 ## Props
-### `children`: React.ReactNode
+#### `children`: React.ReactNode
 - isRequired
 - default: `undefined`
 
-### `className`: string
+#### `className`: string
 - default: `undefined`
 
-### `style`: object
+#### `style`: object
 - default: `undefined`
 
-### `iconSize`: number
+#### `iconSize`: number
 - default: `26`
 
-### `iconColor`: string
+#### `iconColor`: string
 - default: `#aeb6bb`
 
-### `iconWrapStyle`: object
+#### `iconWrapStyle`: object
 - default: 
   ```
   { 
@@ -64,7 +64,7 @@ import OverflowWrapper from 'react-overflow-wrapper';
   }
   ```
 
-### `iconStyle`: object
+#### `iconStyle`: object
 - default: 
   ```
   {
@@ -73,13 +73,13 @@ import OverflowWrapper from 'react-overflow-wrapper';
   }
   ```
 
-### `hideIcons`: boolean
+#### `hideIcons`: boolean
 - default: `false`
 
-### `leftIcon`: React.ReactNode
+#### `leftIcon`: React.ReactNode
 - default: `undefined`
 
-### `rightIcon`: React.ReactNode
+#### `rightIcon`: React.ReactNode
 - default: `undefined`
 
 ## Browser support
