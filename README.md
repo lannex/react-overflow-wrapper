@@ -33,18 +33,54 @@ import OverflowWrapper from 'react-overflow-wrapper';
 ```
 
 ## Props
-| Parameter | Type | Default | isRequired |
-|-----------|------|---------|------------|
-| children | React.ReactNode | undefined | true |
-| className | string | undefined |
-| style | object | undefined |
-| iconSize | number | 26 |
-| iconColor | string | #aeb6bb |
-| iconWrapStyle | object | { left: { backgroundImage: 'linear-gradient(to right, hsl(0, 100%, 100%) 25%, hsla(0, 0%, 0%, 0))' }, right: { backgroundImage: 'linear-gradient(to left, hsl(0, 100%, 100%) 25%, hsla(0, 0%, 0%, 0))' } }
-| iconStyle | object | { left: {}, right: {} } |
-| hideIcons | boolean | false |
-| leftIcon | React.ReactNode | undefined |
-| rightIcon | React.ReactNode | undefined |
+### `children`: React.ReactNode
+- isRequired
+- default: `undefined`
+
+### `className`: string
+- default: `undefined`
+
+### `style`: object
+- default: `undefined`
+
+### `iconSize`: number
+- default: `26`
+
+### `iconColor`: string
+- default: `#aeb6bb`
+
+### `iconWrapStyle`: object
+- default: 
+  ```
+  { 
+    left: { 
+      backgroundImage: 'linear-gradient(to right, hsl(0, 100%, 100%) 25%, 
+      hsla(0, 0%, 0%, 0))', 
+    }, 
+    right: { 
+      backgroundImage: 'linear-gradient(to left, hsl(0, 100%, 100%) 25%, 
+      hsla(0, 0%, 0%, 0))', 
+    }, 
+  }
+  ```
+
+### `iconStyle`: object
+- default: 
+  ```
+  {
+    left: {},
+    right: {},
+  }
+  ```
+
+### `hideIcons`: boolean
+- default: `false`
+
+### `leftIcon`: React.ReactNode
+- default: `undefined`
+
+### `rightIcon`: React.ReactNode
+- default: `undefined`
 
 ## Browser support
 Tested with modern browsers.
