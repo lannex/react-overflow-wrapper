@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
@@ -15,7 +15,9 @@ module.exports = {
   },
   external: ['react', 'react-dom'],
   plugins: [
-    typescript(),
+    typescript({
+      clean: true,
+    }),
     resolve(),
     commonjs(),
     replace({
