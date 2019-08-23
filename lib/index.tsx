@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
 import throttle from 'lodash/throttle';
 
+const isWindow: boolean = typeof window !== 'undefined';
+
 export interface OverflowListProps {
   children: React.ReactNode;
   className?: string;
@@ -100,11 +102,15 @@ class OverflowList extends React.Component<
 
   componentDidMount() {
     this.handleResize();
-    window.addEventListener('resize', this.throttledResize);
+    if (isWindow) {
+      window.addEventListener('resize', this.throttledResize);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.throttledResize);
+    if (isWindow) {
+      window.removeEventListener('resize', this.throttledResize);
+    }
   }
 
   handleResize = () => {
