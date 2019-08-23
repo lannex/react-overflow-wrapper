@@ -266,21 +266,95 @@ class OverflowList extends React.Component<
     );
   };
 
-  render() {
+  renderLeftIcon = () => {
     const {
-      children,
-      className,
-      style,
-      hideIcons,
-      leftIcon,
-      rightIcon,
-      iconSize,
-      iconWrapStyle,
-      iconStyle,
       iconColor,
+      iconSize,
+      iconStyle,
+      iconWrapStyle,
+      leftIcon,
     } = this.props;
-    const { x, isOverflow, rootWidth, wrapWidth } = this.state;
+    return (
+      <div
+        className="react-overflow-wrapper__icon-left"
+        style={{
+          ...arrowWrapStyle,
+          left: 0,
+          textAlign: 'left',
+          ...iconWrapStyle.left,
+        }}
+        role="button"
+        tabIndex={0}
+        onClick={this.handleClickLeft}
+      >
+        {leftIcon || (
+          <svg
+            style={{
+              position: 'relative',
+              ...iconStyle.left,
+            }}
+            width={iconSize}
+            height={iconSize}
+            viewBox="0 0 48 48"
+          >
+            <path
+              d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"
+              fill={iconColor}
+            />
+            <path d="M0-.25h48v48H0z" fill="none" />
+          </svg>
+        )}
+      </div>
+    );
+  };
 
+  renderRightIcon = () => {
+    const {
+      iconColor,
+      iconSize,
+      iconStyle,
+      iconWrapStyle,
+      rightIcon,
+    } = this.props;
+    return (
+      <div
+        className="react-overflow-wrapper__icon-right"
+        style={{
+          ...arrowWrapStyle,
+          right: 0,
+          textAlign: 'right',
+          ...iconWrapStyle.right,
+        }}
+        role="button"
+        tabIndex={0}
+        onClick={this.handleClickRight}
+      >
+        {rightIcon || (
+          <svg
+            style={{
+              position: 'relative',
+              ...iconStyle.right,
+            }}
+            width={iconSize}
+            height={iconSize}
+            viewBox="0 0 48 48"
+          >
+            <path
+              d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"
+              fill={iconColor}
+            />
+            <path d="M0-.25h48v48H0z" fill="none" />
+          </svg>
+        )}
+      </div>
+    );
+  };
+
+  render() {
+    const { children, className, hideIcons, style } = this.props;
+    const { x, isOverflow, rootWidth, wrapWidth } = this.state;
+    const LeftIcon = this.renderLeftIcon;
+    const RightIcon = this.renderRightIcon;
     return (
       <div
         className={`react-overflow-wrapper ${className || ''}`}
@@ -311,69 +385,9 @@ class OverflowList extends React.Component<
         >
           {children}
         </div>
-        {!hideIcons && isOverflow && x < 0 && (
-          <div
-            className="react-overflow-wrapper__icon-left"
-            style={{
-              ...arrowWrapStyle,
-              left: 0,
-              textAlign: 'left',
-              ...iconWrapStyle.left,
-            }}
-            role="button"
-            tabIndex={0}
-            onClick={this.handleClickLeft}
-          >
-            {leftIcon || (
-              <svg
-                style={{
-                  position: 'relative',
-                  ...iconStyle.left,
-                }}
-                width={iconSize}
-                height={iconSize}
-                viewBox="0 0 48 48"
-              >
-                <path
-                  d="M30.83 32.67l-9.17-9.17 9.17-9.17L28 11.5l-12 12 12 12z"
-                  fill={iconColor}
-                />
-                <path d="M0-.25h48v48H0z" fill="none" />
-              </svg>
-            )}
-          </div>
-        )}
+        {!hideIcons && isOverflow && x < 0 && <LeftIcon />}
         {!hideIcons && isOverflow && -x < wrapWidth - rootWidth && (
-          <div
-            className="react-overflow-wrapper__icon-right"
-            style={{
-              ...arrowWrapStyle,
-              right: 0,
-              textAlign: 'right',
-              ...iconWrapStyle.right,
-            }}
-            role="button"
-            tabIndex={0}
-            onClick={this.handleClickRight}
-          >
-            {rightIcon || (
-              <svg
-                style={{
-                  position: 'relative',
-                  ...iconStyle.right,
-                }}
-                width={iconSize}
-                height={iconSize}
-                viewBox="0 0 48 48"
-              >
-                <path
-                  d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"
-                  fill={iconColor}
-                />
-                <path d="M0-.25h48v48H0z" fill="none" />
-              </svg>
-            )}
-          </div>
+          <RightIcon />
         )}
       </div>
     );
