@@ -166,13 +166,13 @@ class OverflowList extends React.Component<
         mouseX = touchEvent.pageX + -x;
       }
       this.setState({
-        isDragging: true,
         mouseX,
+        isDragging: true,
       });
     }
   };
 
-  handleMouseMove = e => {
+  handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
     const {
       isOverflow,
       isDragging,
@@ -185,9 +185,11 @@ class OverflowList extends React.Component<
       let distance = 0;
       if (e.type === 'mousemove') {
         e.preventDefault();
-        distance = e.pageX - mouseX;
+        const { pageX } = e as React.MouseEvent;
+        distance = pageX - mouseX;
       } else if (e.type === 'touchmove') {
-        const touchEvent = e.changedTouches[0];
+        const { changedTouches } = e as React.TouchEvent;
+        const touchEvent = changedTouches[0];
         distance = touchEvent.pageX - mouseX;
       }
 
