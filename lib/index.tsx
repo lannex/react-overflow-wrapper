@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 
 const isWindow: boolean = typeof window !== 'undefined';
 
@@ -26,9 +26,9 @@ interface OverflowListState {
   isOverflow: boolean;
   rootWidth: number;
   wrapWidth: number;
-  x: number;
-  isDragging: boolean;
-  mouseX: number;
+  x?: number;
+  isDragging?: boolean;
+  mouseX?: number;
 }
 
 const rootStyle: CSSProperties = {
@@ -96,37 +96,43 @@ class OverflowList extends React.Component<
     mouseX: 0,
   };
 
-  throttledResize = throttle(() => {
+  debouncedResize = debounce(() => {
     this.handleResize();
-  }, 400);
+  }, 300);
 
   componentDidMount() {
     this.handleResize();
     if (isWindow) {
-      window.addEventListener('resize', this.throttledResize);
+      window.addEventListener('resize', this.debouncedResize);
     }
   }
 
   componentWillUnmount() {
     if (isWindow) {
-      window.removeEventListener('resize', this.throttledResize);
+      window.removeEventListener('resize', this.debouncedResize);
     }
   }
 
   handleResize = () => {
-    const { isOverflow } = this.state;
+    const { isOverflow, x } = this.state;
     const rootWidth = this.rootRef.current
       ? this.rootRef.current.clientWidth
       : 0;
     const wrapWidth = this.wrapRef.current
       ? this.wrapRef.current.scrollWidth
       : 0;
-    if (rootWidth < wrapWidth) {
-      this.setState({
-        isOverflow: true,
+    if (rootWidth <= wrapWidth) {
+      const newState: OverflowListState = {
         rootWidth,
         wrapWidth,
-      });
+        isOverflow: true,
+      };
+      const absX = Math.abs(x);
+      if (rootWidth + absX > wrapWidth) {
+        const absDistance = Math.abs(wrapWidth - rootWidth + x);
+        newState.x = x + absDistance;
+      }
+      this.setState(newState);
     } else if (isOverflow) {
       this.setState({
         isOverflow: false,
