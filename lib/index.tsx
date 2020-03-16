@@ -49,7 +49,7 @@ const arrowWrapStyle: CSSProperties = {
   position: 'absolute',
   zIndex: 1,
   top: 0,
-  minWidth: 50,
+  // minWidth: 50,
   height: '100%',
   cursor: 'pointer',
   outline: 0,
