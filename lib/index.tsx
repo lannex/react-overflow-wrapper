@@ -294,7 +294,7 @@ class OverflowList extends React.Component<
         role="button"
         tabIndex={0}
         onClick={this.handleClickLeft}
-        onKeyPress={(): null => null}
+        onKeyPress={(): void => null}
       >
         {leftIcon || (
           <svg
@@ -337,7 +337,7 @@ class OverflowList extends React.Component<
         role="button"
         tabIndex={0}
         onClick={this.handleClickRight}
-        onKeyPress={(): null => null}
+        onKeyPress={(): void => null}
       >
         {rightIcon || (
           <svg
