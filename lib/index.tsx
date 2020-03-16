@@ -83,11 +83,11 @@ class OverflowList extends React.Component<
     },
   };
 
-  rootRef = React.createRef<HTMLDivElement>();
+  private rootRef = React.createRef<HTMLDivElement>();
 
-  wrapRef = React.createRef<HTMLDivElement>();
+  private wrapRef = React.createRef<HTMLDivElement>();
 
-  state = {
+  public state = {
     isOverflow: false,
     rootWidth: 0,
     wrapWidth: 0,
@@ -96,24 +96,24 @@ class OverflowList extends React.Component<
     mouseX: 0,
   };
 
-  debouncedResize = debounce(() => {
+  private debouncedResize = debounce(() => {
     this.handleResize();
   }, 300);
 
-  componentDidMount() {
+  public componentDidMount() {
     this.handleResize();
     if (isWindow) {
       window.addEventListener('resize', this.debouncedResize);
     }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (isWindow) {
       window.removeEventListener('resize', this.debouncedResize);
     }
   }
 
-  handleResize = () => {
+  private handleResize = () => {
     const { isOverflow, x } = this.state;
     const rootWidth = this.rootRef.current
       ? this.rootRef.current.clientWidth
@@ -140,7 +140,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+  private handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     const { isOverflow, rootWidth, wrapWidth, x } = this.state;
     if (isOverflow) {
       let newX = x;
@@ -159,7 +159,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+  private handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     const { isOverflow, x } = this.state;
     if (isOverflow) {
       let mouseX = 0;
@@ -178,7 +178,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
+  private handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
     const {
       isOverflow,
       isDragging,
@@ -212,7 +212,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleMouseUp = () => {
+  private handleMouseUp = () => {
     const { isOverflow, isDragging } = this.state;
     if (isOverflow && isDragging) {
       this.setState({
@@ -221,7 +221,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  handleClickLeft = (e: React.MouseEvent<HTMLDivElement>) => {
+  private handleClickLeft = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
     this.setState(
@@ -247,7 +247,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  handleClickRight = (e: React.MouseEvent<HTMLDivElement>) => {
+  private handleClickRight = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     e.preventDefault();
     const { rootWidth, wrapWidth } = this.state;
@@ -274,7 +274,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  renderLeftIcon = () => {
+  private renderLeftIcon = () => {
     const {
       iconColor,
       iconSize,
@@ -316,7 +316,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  renderRightIcon = () => {
+  private renderRightIcon = () => {
     const {
       iconColor,
       iconSize,
@@ -358,7 +358,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  render() {
+  public render() {
     const { children, className, hideIcons, style } = this.props;
     const { x, isOverflow, rootWidth, wrapWidth } = this.state;
     const LeftIcon = this.renderLeftIcon;

@@ -1,4 +1,3 @@
-/// <reference types="lodash" />
 import React from 'react';
 export interface OverflowListProps {
     children: React.ReactNode;
@@ -48,8 +47,8 @@ declare class OverflowList extends React.Component<OverflowListProps, OverflowLi
             right: {};
         };
     };
-    rootRef: React.RefObject<HTMLDivElement>;
-    wrapRef: React.RefObject<HTMLDivElement>;
+    private rootRef;
+    private wrapRef;
     state: {
         isOverflow: boolean;
         rootWidth: number;
@@ -58,18 +57,18 @@ declare class OverflowList extends React.Component<OverflowListProps, OverflowLi
         isDragging: boolean;
         mouseX: number;
     };
-    debouncedResize: (() => void) & import("lodash").Cancelable;
+    private debouncedResize;
     componentDidMount(): void;
     componentWillUnmount(): void;
-    handleResize: () => void;
-    handleWheel: (e: React.WheelEvent<HTMLDivElement>) => void;
-    handleMouseDown: (e: React.MouseEvent<Element, MouseEvent> | React.TouchEvent<Element>) => void;
-    handleMouseMove: (e: React.MouseEvent<Element, MouseEvent> | React.TouchEvent<Element>) => void;
-    handleMouseUp: () => void;
-    handleClickLeft: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    handleClickRight: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    renderLeftIcon: () => JSX.Element;
-    renderRightIcon: () => JSX.Element;
+    private handleResize;
+    private handleWheel;
+    private handleMouseDown;
+    private handleMouseMove;
+    private handleMouseUp;
+    private handleClickLeft;
+    private handleClickRight;
+    private renderLeftIcon;
+    private renderRightIcon;
     render(): JSX.Element;
 }
 export default OverflowList;
