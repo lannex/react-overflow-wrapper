@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 export interface OverflowListProps {
     children: React.ReactNode;
     className?: string;
@@ -69,6 +69,6 @@ declare class OverflowList extends React.Component<OverflowListProps, OverflowLi
     private handleClickRight;
     private renderLeftIcon;
     private renderRightIcon;
-    render(): JSX.Element;
+    render(): React.ReactNode;
 }
 export default OverflowList;

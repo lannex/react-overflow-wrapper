@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import * as React from 'react';
 import debounce from 'lodash/debounce';
 
 const isWindow: boolean = typeof window !== 'undefined';
@@ -31,12 +31,12 @@ interface OverflowListState {
   mouseX?: number;
 }
 
-const rootStyle: CSSProperties = {
+const rootStyle: React.CSSProperties = {
   position: 'relative',
   overflow: 'hidden',
 };
 
-const wrapStyle: CSSProperties = {
+const wrapStyle: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   position: 'relative',
@@ -45,7 +45,7 @@ const wrapStyle: CSSProperties = {
   whiteSpace: 'nowrap',
 };
 
-const arrowWrapStyle: CSSProperties = {
+const arrowWrapStyle: React.CSSProperties = {
   position: 'absolute',
   zIndex: 1,
   top: 0,
@@ -96,24 +96,24 @@ class OverflowList extends React.Component<
     mouseX: 0,
   };
 
-  private debouncedResize = debounce(() => {
+  private debouncedResize = debounce((): void => {
     this.handleResize();
   }, 300);
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.handleResize();
     if (isWindow) {
       window.addEventListener('resize', this.debouncedResize);
     }
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     if (isWindow) {
       window.removeEventListener('resize', this.debouncedResize);
     }
   }
 
-  private handleResize = () => {
+  private handleResize = (): void => {
     const { isOverflow, x } = this.state;
     const rootWidth = this.rootRef.current
       ? this.rootRef.current.clientWidth
@@ -140,7 +140,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  private handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+  private handleWheel = (e: React.WheelEvent<HTMLDivElement>): void => {
     const { isOverflow, rootWidth, wrapWidth, x } = this.state;
     if (isOverflow) {
       let newX = x;
@@ -159,7 +159,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  private handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+  private handleMouseDown = (e: React.MouseEvent | React.TouchEvent): void => {
     const { isOverflow, x } = this.state;
     if (isOverflow) {
       let mouseX = 0;
@@ -178,7 +178,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  private handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
+  private handleMouseMove = (e: React.MouseEvent | React.TouchEvent): void => {
     const {
       isOverflow,
       isDragging,
@@ -212,7 +212,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  private handleMouseUp = () => {
+  private handleMouseUp = (): void => {
     const { isOverflow, isDragging } = this.state;
     if (isOverflow && isDragging) {
       this.setState({
@@ -221,7 +221,7 @@ class OverflowList extends React.Component<
     }
   };
 
-  private handleClickLeft = (e: React.MouseEvent<HTMLDivElement>) => {
+  private handleClickLeft = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
     e.preventDefault();
     this.setState(
@@ -247,7 +247,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  private handleClickRight = (e: React.MouseEvent<HTMLDivElement>) => {
+  private handleClickRight = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
     e.preventDefault();
     const { rootWidth, wrapWidth } = this.state;
@@ -274,7 +274,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  private renderLeftIcon = () => {
+  private renderLeftIcon = (): React.ReactElement => {
     const {
       iconColor,
       iconSize,
@@ -294,6 +294,7 @@ class OverflowList extends React.Component<
         role="button"
         tabIndex={0}
         onClick={this.handleClickLeft}
+        onKeyPress={(): null => null}
       >
         {leftIcon || (
           <svg
@@ -316,7 +317,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  private renderRightIcon = () => {
+  private renderRightIcon = (): React.ReactElement => {
     const {
       iconColor,
       iconSize,
@@ -336,6 +337,7 @@ class OverflowList extends React.Component<
         role="button"
         tabIndex={0}
         onClick={this.handleClickRight}
+        onKeyPress={(): null => null}
       >
         {rightIcon || (
           <svg
@@ -358,7 +360,7 @@ class OverflowList extends React.Component<
     );
   };
 
-  public render() {
+  public render(): React.ReactNode {
     const { children, className, hideIcons, style } = this.props;
     const { x, isOverflow, rootWidth, wrapWidth } = this.state;
     const LeftIcon = this.renderLeftIcon;
