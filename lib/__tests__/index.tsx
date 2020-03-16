@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import OverflowWrapper from '../index';
 
 const items = [
@@ -22,7 +22,7 @@ describe('react-overflow-wrapper', () => {
   let component = null;
 
   beforeEach(() => {
-    component = shallow(
+    component = mount(
       <OverflowWrapper style={{ width: 300, height: 40 }}>
         {items.map(el => (
           <div key={el} style={{ margin: '0 10px' }}>
