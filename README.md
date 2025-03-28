@@ -1,4 +1,6 @@
 # react-overflow-wrapper
+> [DEPRECATED] This repository will no longer be updated. 
+
 A React component that scrolls horizontally if the list is overflow.
 
 [![NPM](https://nodei.co/npm/react-overflow-wrapper.png?compact=true)](https://nodei.co/npm/react-overflow-wrapper/)
